@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NaturBar — Fuel Your Day, Naturally Powerful</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --caramel: #6B3E26;
+  --golden: #D4A373;
+  --beige: #EAD7C5;
+  --pistachio: #A3B18A;
+  --cocoa: #3E2723;
+  --cream: #FFF8F0;
+  --orange: #FF8C42;
+  --orange-dark: #E07030;
+  --white: #ffffff;
+  --text-dark: #2A1A0E;
+  --text-mid: #5C3D1E;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+/* ─── STICKY NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,248,240,0.88);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(107,62,38,0.1);
+  transition: all 0.3s ease;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem; font-weight: 900;
+  color: var(--caramel);
+  letter-spacing: -0.5px;
+}
+.nav-logo span { color: var(--orange); }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--text-mid); font-size: 0.88rem; font-weight: 500; letter-spacing: 0.3px; transition: color 0.2s; }
+.nav-links a:hover { color: var(--caramel); }
+.nav-cta {
+  background: var(--orange); color: white;
+  padding: 11px 28px; border-radius: 50px;
+  font-size: 0.88rem; font-weight: 600; letter-spacing: 0.3px;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(255,140,66,0.35);
+}
+.nav-cta:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(255,140,66,0.45); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  background: radial-gradient(ellipse 120% 80% at 50% 60%, #D4A373 0%, #C48A50 25%, #6B3E26 60%, #3E2723 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  padding-top: 80px;
+}
+
+.hero-bg-grain {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+.hero-particles { position: absolute; inset: 0; pointer-events: none; }
+.particle {
+  position: absolute; border-radius: 50%;
+  animation: float-particle linear infinite;
+  opacity: 0;
+}
+
+@keyframes float-particle {
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+.hero-content {
+  text-align: center; position: relative; z-index: 2;
+  animation: hero-enter 1s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,248,240,0.15); border: 1px solid rgba(255,248,240,0.3);
+  backdrop-filter: blur(8px);
+  padding: 8px 20px; border-radius: 50px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  margin-top: 40px;
+  color: rgba(255,248,240,0.9);
+  margin-bottom: 28px;
+  animation: badge-pulse 1.6s ease-in-out infinite;
+}
+.hero-badge-dot { width: 6px; height: 6px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.4);opacity:0.7} }
+
+@keyframes badge-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(255,140,66,0);
+  }
+  50% {
+    opacity: 0.75;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255,140,66,0.25);
+  }
+}
+
+.hero-headline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 900; line-height: 1.05;
+  color: var(--cream);
+  max-width: 900px;
+  margin: 0 auto 16px;
+  animation: hero-enter 1s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.3);
+}
+.hero-headline em {
+  font-style: italic; color: var(--golden);
+  display: block;
+}
+
+.hero-sub {
+  font-size: 1.05rem; font-weight: 400; color: rgba(255,248,240,0.75);
+  max-width: 480px; margin: 0 auto 40px; line-height: 1.6;
+  animation: hero-enter 1s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero-ctas {
+  display: flex; gap: 16px; justify-content: center; align-items: center;
+  animation: hero-enter 1s 0.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.btn-primary {
+  background: var(--orange); color: white;
+  padding: 16px 40px; border-radius: 50px;
+  font-size: 1rem; font-weight: 700; letter-spacing: 0.3px;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(255,140,66,0.5), 0 0 0 0 rgba(255,140,66,0.4);
+  display: inline-flex; align-items: center; gap: 8px;
+  animation: cta-glow 3s ease-in-out infinite;
+}
+@keyframes cta-glow {
+  0%,100%{box-shadow:0 8px 32px rgba(255,140,66,0.5),0 0 0 0 rgba(255,140,66,0.4)}
+  50%{box-shadow:0 8px 40px rgba(255,140,66,0.65),0 0 0 12px rgba(255,140,66,0)}
+}
+.btn-primary:hover { background: var(--orange-dark); transform: translateY(-3px) scale(1.03); }
+
+.btn-secondary {
+  color: rgba(255,248,240,0.85); background: transparent;
+  padding: 16px 32px; border-radius: 50px;
+  font-size: 0.95rem; font-weight: 500;
+  border: 1px solid rgba(255,248,240,0.3); cursor: pointer; text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex; align-items: center; gap: 8px;
+  backdrop-filter: blur(8px);
+}
+.btn-secondary:hover { background: rgba(255,248,240,0.1); border-color: rgba(255,248,240,0.5); transform: translateY(-2px); }
+
+/* Product image floating */
+.hero-product {
+  position: relative; margin: 60px auto 0; z-index: 2;
+  width: min(780px, 90vw);
+  animation: hero-enter 1s 0.5s cubic-bezier(0.16,1,0.3,1) both;
+}
+.hero-product img {
+  width: 100%; border-radius: 20px;
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.5));
+  animation: hero-float 6s ease-in-out infinite;
+}
+@keyframes hero-float {
+  0%,100%{ transform: translateY(0px) rotate(-1deg); }
+  50%{ transform: translateY(-18px) rotate(1deg); }
+}
+
+.hero-floating-ingredients {
+  position: absolute; inset: -60px; pointer-events: none;
+}
+.fi {
+  position: absolute;
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  animation: fi-float ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+.fi:nth-child(1){ top:10%; left:5%; animation-duration:7s; animation-delay:0s; }
+.fi:nth-child(2){ top:20%; right:8%; animation-duration:8s; animation-delay:1s; }
+.fi:nth-child(3){ bottom:30%; left:2%; animation-duration:6s; animation-delay:2s; }
+.fi:nth-child(4){ bottom:20%; right:4%; animation-duration:9s; animation-delay:0.5s; }
+.fi:nth-child(5){ top:5%; left:40%; animation-duration:7.5s; animation-delay:1.5s; }
+.fi:nth-child(6){ bottom:10%; left:25%; animation-duration:8.5s; animation-delay:3s; }
+@keyframes fi-float {
+  0%,100%{ transform: translateY(0) rotate(-5deg) scale(1); }
+  33%{ transform: translateY(-15px) rotate(8deg) scale(1.05); }
+  66%{ transform: translateY(-8px) rotate(-3deg) scale(0.97); }
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: rgba(255,248,240,0.5); font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+  animation: fade-in 1s 1.5s both;
+}
+@keyframes fade-in { from{opacity:0} to{opacity:1} }
+.scroll-hint-line {
+  width: 1px; height: 48px;
+  background: linear-gradient(to bottom, rgba(255,248,240,0.5), transparent);
+  animation: scroll-line 2s ease-in-out infinite;
+}
+@keyframes scroll-line { 0%,100%{opacity:0.5;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.2)} }
+
+/* ─── TRUST STRIP ─── */
+.trust-strip {
+  background: var(--cocoa); padding: 20px 60px;
+  display: flex; align-items: center; justify-content: center; gap: 48px;
+  overflow: hidden;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--golden); font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 0.8px; text-transform: uppercase; white-space: nowrap;
+  flex-shrink: 0;
+}
+.trust-item svg { width: 18px; height: 18px; }
+.trust-sep { width: 4px; height: 4px; background: rgba(212,163,115,0.4); border-radius: 50%; flex-shrink: 0; }
+
+/* ─── SECTION COMMONS ─── */
+section { padding: 120px 60px; }
+.section-label {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; line-height: 1.1;
+  color: var(--caramel); margin-bottom: 20px;
+}
+.section-sub {
+  font-size: 1rem; color: var(--text-mid); line-height: 1.7; max-width: 520px;
+}
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── INGREDIENTS STORY ─── */
+.ingredients-section {
+  background: var(--cream);
+  text-align: center;
+}
+.ingredients-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 24px; margin-top: 72px; max-width: 1100px; margin-left: auto; margin-right: auto;
+}
+.ingredient-card {
+  background: white;
+  border: 1px solid rgba(212,163,115,0.2);
+  border-radius: 24px; padding: 36px 24px;
+  text-align: center; position: relative; overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+  cursor: default;
+}
+.ingredient-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 0%, rgba(212,163,115,0.08) 0%, transparent 70%);
+  opacity: 0; transition: opacity 0.4s;
+}
+.ingredient-card:hover { transform: translateY(-8px); box-shadow: 0 24px 60px rgba(107,62,38,0.12); }
+.ingredient-card:hover::before { opacity: 1; }
+.ingredient-emoji { font-size: 3rem; margin-bottom: 16px; display: block; }
+.ingredient-name {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700;
+  color: var(--caramel); margin-bottom: 8px;
+}
+.ingredient-desc { font-size: 0.82rem; color: var(--text-mid); line-height: 1.5; margin-bottom: 16px; }
+.ingredient-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--golden), var(--orange));
+  color: white; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.5px; padding: 5px 14px; border-radius: 50px;
+}
+
+/* ─── FLAVOR SPLIT ─── */
+.flavor-section {
+  padding: 0; display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh;
+}
+.flavor-panel {
+  padding: 100px 80px; display: flex; flex-direction: column;
+  justify-content: center; position: relative; overflow: hidden;
+}
+.flavor-dates {
+  background: linear-gradient(145deg, #3E2723 0%, #6B3E26 50%, #8B5A3C 100%);
+}
+.flavor-dry {
+  background: linear-gradient(145deg, #5C6B4A 0%, #A3B18A 50%, #EAD7C5 100%);
+}
+.flavor-panel-content { position: relative; z-index: 2; }
+.flavor-variant {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px; display: block;
+}
+.flavor-dates .flavor-variant { color: var(--golden); }
+.flavor-dry .flavor-variant { color: var(--cocoa); }
+.flavor-title {
+  font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900; line-height: 1.1; margin-bottom: 20px;
+}
+.flavor-dates .flavor-title { color: var(--cream); }
+.flavor-dry .flavor-title { color: var(--cocoa); }
+.flavor-desc { font-size: 0.95rem; line-height: 1.7; margin-bottom: 36px; max-width: 380px; }
+.flavor-dates .flavor-desc { color: rgba(255,248,240,0.75); }
+.flavor-dry .flavor-desc { color: rgba(62,39,35,0.75); }
+
+.flavor-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+.flavor-chip {
+  padding: 8px 18px; border-radius: 50px; font-size: 0.78rem; font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.flavor-dates .flavor-chip {
+  background: rgba(255,248,240,0.12); color: var(--golden);
+  border: 1px solid rgba(212,163,115,0.3);
+}
+.flavor-dry .flavor-chip {
+  background: rgba(62,39,35,0.1); color: var(--cocoa);
+  border: 1px solid rgba(62,39,35,0.2);
+}
+
+.flavor-price { display: flex; align-items: baseline; gap: 8px; margin-bottom: 28px; }
+.flavor-price-main { font-size: 2rem; font-weight: 900; }
+.flavor-dates .flavor-price-main { color: var(--golden); }
+.flavor-dry .flavor-price-main { color: var(--cocoa); }
+.flavor-price-per { font-size: 0.82rem; opacity: 0.6; }
+.flavor-dates .flavor-price-per { color: var(--cream); }
+.flavor-dry .flavor-price-per { color: var(--cocoa); }
+
+.btn-flavor-dates {
+  background: var(--orange); color: white;
+  padding: 15px 36px; border-radius: 50px;
+  font-size: 0.92rem; font-weight: 700;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: all 0.3s ease; display: inline-block;
+  box-shadow: 0 8px 24px rgba(255,140,66,0.4);
+}
+.btn-flavor-dates:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(255,140,66,0.5); }
+.btn-flavor-dry {
+  background: var(--cocoa); color: var(--cream);
+  padding: 15px 36px; border-radius: 50px;
+  font-size: 0.92rem; font-weight: 700;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: all 0.3s ease; display: inline-block;
+  box-shadow: 0 8px 24px rgba(62,39,35,0.3);
+}
+.btn-flavor-dry:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(62,39,35,0.4); }
+
+/* Flavor BG shapes */
+.flavor-bg-shape {
+  position: absolute; border-radius: 50%; pointer-events: none;
+}
+.flavor-dates .flavor-bg-shape {
+  width: 500px; height: 500px; top: -100px; right: -150px;
+  background: radial-gradient(circle, rgba(212,163,115,0.1) 0%, transparent 70%);
+}
+.flavor-dry .flavor-bg-shape {
+  width: 500px; height: 500px; bottom: -100px; left: -150px;
+  background: radial-gradient(circle, rgba(62,39,35,0.08) 0%, transparent 70%);
+}
+
+/* ─── BENEFITS ─── */
+.benefits-section { background: var(--cocoa); text-align: center; }
+.benefits-section .section-title { color: var(--cream); }
+.benefits-section .section-label { color: var(--golden); }
+.benefits-section .section-sub { color: rgba(255,248,240,0.6); margin: 0 auto; }
+.benefits-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px; margin-top: 72px; max-width: 1000px; margin-left: auto; margin-right: auto;
+}
+.benefit-card {
+  background: rgba(255,248,240,0.04); border: 1px solid rgba(255,248,240,0.08);
+  border-radius: 24px; padding: 48px 36px; text-align: center;
+  transition: all 0.4s ease; position: relative; overflow: hidden;
+}
+.benefit-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--orange), var(--golden));
+  transform: scaleX(0); transition: transform 0.4s ease;
+}
+.benefit-card:hover { background: rgba(255,248,240,0.07); transform: translateY(-6px); }
+.benefit-card:hover::after { transform: scaleX(1); }
+.benefit-icon {
+  width: 64px; height: 64px; margin: 0 auto 24px;
+  background: linear-gradient(135deg, rgba(212,163,115,0.2), rgba(255,140,66,0.15));
+  border-radius: 18px; display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  border: 1px solid rgba(212,163,115,0.2);
+}
+.benefit-title {
+  font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
+  color: var(--golden); margin-bottom: 12px;
+}
+.benefit-desc { font-size: 0.88rem; color: rgba(255,248,240,0.55); line-height: 1.6; }
+
+/* ─── SENSORY SECTION ─── */
+.sensory-section { background: white; overflow: hidden; }
+.sensory-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  align-items: center; max-width: 1200px; margin: 0 auto;
+}
+.sensory-text { }
+.sensory-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px;
+}
+.stat-box {
+  background: var(--cream); border-radius: 20px; padding: 28px 24px;
+  border: 1px solid rgba(212,163,115,0.2);
+}
+.stat-num {
+  font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 900;
+  color: var(--caramel); line-height: 1;
+}
+.stat-label { font-size: 0.78rem; color: var(--text-mid); margin-top: 6px; font-weight: 500; }
+.sensory-image-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+.sensory-img-box {
+  border-radius: 20px; overflow: hidden; position: relative;
+  background: var(--beige);
+}
+.sensory-img-box:first-child { grid-column: 1/-1; }
+.sensory-img-placeholder {
+  aspect-ratio: 16/10; display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; flex-direction: column; gap: 10px; padding: 20px;
+}
+.sensory-img-box:not(:first-child) .sensory-img-placeholder { aspect-ratio: 1; }
+
+/* The "broken bar" big display box */
+.bar-showcase {
+  background: linear-gradient(145deg, var(--caramel), var(--cocoa));
+  border-radius: 20px; padding: 40px; aspect-ratio: 16/10;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+.bar-showcase-emoji { font-size: 4rem; margin-bottom: 12px; }
+.bar-showcase-label {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--golden); font-style: italic;
+}
+
+.macro-box {
+  background: linear-gradient(145deg, var(--beige), #F5E8D8);
+  border-radius: 20px; padding: 30px;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  gap: 12px;
+}
+.macro-box:first-of-type .macro-emoji { font-size: 3rem; }
+.macro-emoji { font-size: 2.5rem; }
+.macro-label { font-size: 0.8rem; font-weight: 600; color: var(--text-mid); text-align: center; letter-spacing: 0.3px; }
+
+/* ─── TESTIMONIALS ─── */
+.testimonials-section { background: var(--cream); text-align: center; }
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 72px; max-width: 1100px; margin-left: auto; margin-right: auto;
+}
+.testimonial-card {
+  background: white; border-radius: 28px; padding: 40px 32px;
+  border: 1px solid rgba(212,163,115,0.15);
+  text-align: left; position: relative; transition: all 0.4s ease;
+}
+.testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(107,62,38,0.1); }
+.testimonial-card::before {
+  content: '"'; position: absolute; top: 20px; right: 28px;
+  font-family: 'Playfair Display', serif; font-size: 5rem; line-height: 1;
+  color: rgba(212,163,115,0.15); font-weight: 900;
+}
+.testimonial-stars { display: flex; gap: 3px; margin-bottom: 20px; }
+.star { color: var(--golden); font-size: 1rem; }
+.testimonial-text { font-size: 0.92rem; line-height: 1.7; color: var(--text-mid); margin-bottom: 24px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 14px; }
+.testimonial-avatar {
+  width: 44px; height: 44px; border-radius: 50%; overflow: hidden;
+  background: linear-gradient(135deg, var(--golden), var(--orange));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; flex-shrink: 0;
+}
+.testimonial-name { font-weight: 700; font-size: 0.88rem; color: var(--caramel); }
+.testimonial-role { font-size: 0.76rem; color: var(--text-mid); margin-top: 2px; }
+.testimonial-tag {
+  display: inline-block; margin-top: 6px;
+  background: linear-gradient(135deg, var(--pistachio), #7B9A68);
+  color: white; font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 0.5px; padding: 3px 10px; border-radius: 50px;
+  text-transform: uppercase;
+}
+
+/* ─── FINAL CTA ─── */
+.final-cta {
+  background: linear-gradient(135deg, var(--caramel) 0%, var(--cocoa) 100%);
+  padding: 140px 60px; text-align: center; position: relative; overflow: hidden;
+}
+.final-cta-bg {
+  position: absolute; inset: 0; opacity: 0.03;
+  background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.5) 40px, rgba(255,255,255,0.5) 41px);
+}
+.final-cta-glow {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,163,115,0.15) 0%, transparent 70%);
+}
+.final-cta-label { color: var(--golden); margin-bottom: 16px; position: relative; z-index: 2; }
+.final-cta-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.05;
+  color: var(--cream); margin-bottom: 20px; position: relative; z-index: 2;
+}
+.final-cta-title em { font-style: italic; color: var(--golden); }
+.final-cta-sub {
+  font-size: 1rem; color: rgba(255,248,240,0.65); max-width: 480px;
+  margin: 0 auto 48px; line-height: 1.7; position: relative; z-index: 2;
+}
+.final-cta-buttons {
+  display: flex; gap: 16px; justify-content: center; align-items: center;
+  position: relative; z-index: 2;
+}
+.final-cta-guarantee {
+  margin-top: 32px; color: rgba(255,248,240,0.45); font-size: 0.78rem;
+  position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  background: #1A0D06; padding: 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 24px;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 900;
+  color: var(--golden);
+}
+.footer-logo span { color: var(--orange); }
+.footer-links { display: flex; gap: 28px; flex-wrap: wrap; }
+.footer-links a { text-decoration: none; color: rgba(255,248,240,0.4); font-size: 0.8rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(--golden); }
+.footer-copy { font-size: 0.75rem; color: rgba(255,248,240,0.25); }
+
+/* ─── STICKY ORDER BAR ─── */
+.sticky-order-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+  background: rgba(62,39,35,0.95); backdrop-filter: blur(16px);
+  padding: 16px 60px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(212,163,115,0.2);
+  transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+.sticky-order-bar.visible { transform: translateY(0); }
+.sticky-left { display: flex; align-items: center; gap: 16px; }
+.sticky-product-dot { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+.sticky-text { color: var(--cream); font-size: 0.92rem; }
+.sticky-text strong { color: var(--golden); font-weight: 700; }
+.sticky-right { display: flex; align-items: center; gap: 16px; }
+.sticky-price { color: var(--golden); font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
+.sticky-btn {
+  background: var(--orange); color: white;
+  padding: 12px 28px; border-radius: 50px;
+  font-size: 0.88rem; font-weight: 700;
+  border: none; cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 20px rgba(255,140,66,0.4);
+}
+.sticky-btn:hover { background: var(--orange-dark); transform: translateY(-2px); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  section { padding: 80px 24px; }
+  .flavor-section { grid-template-columns: 1fr; }
+  .flavor-panel { padding: 80px 32px; }
+  .sensory-inner { grid-template-columns: 1fr; gap: 48px; }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .final-cta { padding: 100px 24px; }
+  .final-cta-buttons { flex-direction: column; }
+  footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+  .sticky-order-bar { padding: 14px 20px; }
+  .trust-strip { gap: 24px; padding: 16px 24px; flex-wrap: wrap; justify-content: center; }
+  .hero { padding: 100px 24px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav>
+  <div class="nav-logo">Natur<span>Bar</span></div>
+  <ul class="nav-links">
+    <li><a href="#ingredients">Ingredients</a></li>
+    <li><a href="#flavors">Flavors</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <a href="https://garkhaswaad.store.shoopy.in" class="nav-cta">Order Now →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grain"></div>
+  <div class="hero-particles" id="particles"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge reveal">
+      <span class="hero-badge-dot"></span>
+      100% Natural · Zero Compromise
+    </div>
+    <h1 class="hero-headline reveal reveal-delay-1">
+      Fuel Your Day,
+      <em>Naturally Powerful.</em>
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      Two extraordinary bars. One unstoppable mission — give your body the real energy it craves, without the crash.
+    </p>
+    <div class="hero-ctas reveal reveal-delay-3">
+      <a href="https://garkhaswaad.store.shoopy.in" class="btn-primary">
+        Order Now
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#flavors" class="btn-secondary">
+        Explore Flavors
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12l4 4 4-4"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-product reveal reveal-delay-4">
+    <div class="hero-floating-ingredients">
+      <span class="fi">🌰</span>
+      <span class="fi">🫐</span>
+      <span class="fi">🥜</span>
+      <span class="fi">🍯</span>
+      <span class="fi">✨</span>
+      <span class="fi">🌿</span>
+    </div>
+    <!-- <img src="/mnt/user-data/uploads/1773750781067_image.png" alt="NaturBar — Premium Energy Bar" /> -->
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-hint-line"></div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    100% Natural
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+    No Added Sugar
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    Instant Energy
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+    Handcrafted
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+    Premium Grade
+  </div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Free Shipping ₹499+
+  </div>
+</div>
+
+<!-- INGREDIENTS STORY -->
+<section class="ingredients-section" id="ingredients">
+  <div class="section-label reveal">The Ingredients</div>
+  <h2 class="section-title reveal reveal-delay-1">Every Bite Tells<br>a Story of Nature</h2>
+  <p class="section-sub reveal reveal-delay-2" style="margin:0 auto;">
+    We source only the finest natural ingredients — no fillers, no shortcuts, no compromises. Just pure, whole foods your body recognizes.
+  </p>
+
+  <div class="ingredients-grid">
+    <div class="ingredient-card reveal">
+      <span class="ingredient-emoji">🫐</span>
+      <div class="ingredient-name">Medjool Dates</div>
+      <div class="ingredient-desc">Nature's caramel — rich, soft, and loaded with natural sugars for clean, sustained energy.</div>
+      <span class="ingredient-tag">100% Natural</span>
+    </div>
+    <div class="ingredient-card reveal reveal-delay-1">
+      <span class="ingredient-emoji">🌰</span>
+      <div class="ingredient-name">Whole Almonds</div>
+      <div class="ingredient-desc">Heart-healthy fats and protein in every crunchy bite. Roasted to perfection.</div>
+      <span class="ingredient-tag">Protein Rich</span>
+    </div>
+    <div class="ingredient-card reveal reveal-delay-2">
+      <span class="ingredient-emoji">🥜</span>
+      <div class="ingredient-name">Cashew Nuts</div>
+      <div class="ingredient-desc">Buttery, creamy cashews deliver magnesium and iron. The luxury nut for a reason.</div>
+      <span class="ingredient-tag">Mineral Packed</span>
+    </div>
+    <div class="ingredient-card reveal reveal-delay-3">
+      <span class="ingredient-emoji">💚</span>
+      <div class="ingredient-name">Pistachios</div>
+      <div class="ingredient-desc">Vibrant green pops of antioxidants and protein. Rare, premium, irreplaceable.</div>
+      <span class="ingredient-tag">Antioxidant</span>
+    </div>
+    <div class="ingredient-card reveal reveal-delay-4">
+      <span class="ingredient-emoji">🍯</span>
+      <div class="ingredient-name">Raw Honey</div>
+      <div class="ingredient-desc">Nature's binding gold — unprocessed, enzyme-rich, with a warm floral sweetness.</div>
+      <span class="ingredient-tag">No Added Sugar</span>
+    </div>
+    <div class="ingredient-card reveal">
+      <span class="ingredient-emoji">🌿</span>
+      <div class="ingredient-name">Flax Seeds</div>
+      <div class="ingredient-desc">Omega-3 powerhouses. Tiny seeds with an enormous nutritional punch.</div>
+      <span class="ingredient-tag">Omega-3</span>
+    </div>
+  </div>
+</section>
+
+<!-- FLAVOR SPLIT -->
+<div class="flavor-section" id="flavors">
+  <div class="flavor-panel flavor-dates">
+    <div class="flavor-bg-shape"></div>
+    <div class="flavor-panel-content">
+      <span class="flavor-variant reveal">Flavor 01 — The Classic</span>
+      <h2 class="flavor-title reveal reveal-delay-1">Dates<br>Energy Bar</h2>
+      <p class="flavor-desc reveal reveal-delay-2">
+        Sink your teeth into deep caramel-like softness. Rich, luscious Medjool dates bind a constellation of nuts into a bar that feels indulgent but fuels you clean. Like a dessert that actually loves you back.
+      </p>
+      <div class="flavor-chips reveal reveal-delay-3">
+        <span class="flavor-chip">Soft & Chewy</span>
+        <span class="flavor-chip">Caramel-Like</span>
+        <span class="flavor-chip">Naturally Sweet</span>
+        <span class="flavor-chip">No Crash</span>
+      </div>
+      <div class="flavor-price reveal reveal-delay-3">
+        <span class="flavor-price-main">₹120</span>
+        <span class="flavor-price-per">/ bar · Pack of 6 ₹660</span>
+      </div>
+      <a href="https://garkhaswaad.store.shoopy.in" class="btn-flavor-dates reveal reveal-delay-4">Order Dates Bar →</a>
+    </div>
+  </div>
+
+  <div class="flavor-panel flavor-dry">
+    <div class="flavor-bg-shape"></div>
+    <div class="flavor-panel-content">
+      <span class="flavor-variant reveal">Flavor 02 — The Royal</span>
+      <h2 class="flavor-title reveal reveal-delay-1">Dry Fruits<br>Energy Bar</h2>
+      <p class="flavor-desc reveal reveal-delay-2">
+        An opulent crunch that commands attention. Loaded with whole almonds, cashews, pistachios, and golden raisins — this bar is unapologetically premium. The power bar for those who settle for nothing less.
+      </p>
+      <div class="flavor-chips reveal reveal-delay-3">
+        <span class="flavor-chip">Extra Crunchy</span>
+        <span class="flavor-chip">Nut-Loaded</span>
+        <span class="flavor-chip">Royal Blend</span>
+        <span class="flavor-chip">High Protein</span>
+      </div>
+      <div class="flavor-price reveal reveal-delay-3">
+        <span class="flavor-price-main">₹140</span>
+        <span class="flavor-price-per">/ bar · Pack of 6 ₹780</span>
+      </div>
+      <a href="https://garkhaswaad.store.shoopy.in" class="btn-flavor-dry reveal reveal-delay-4">Order Dry Fruits Bar →</a>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<section class="benefits-section" id="benefits">
+  <div class="section-label reveal">Why NaturBar?</div>
+  <h2 class="section-title reveal reveal-delay-1">Engineered by Nature,<br>Perfected for You</h2>
+  <p class="section-sub reveal reveal-delay-2">
+    No lab-made shortcuts. Just the kind of nourishment your body was built for.
+  </p>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">⚡</div>
+      <div class="benefit-title">Instant Energy</div>
+      <div class="benefit-desc">Natural sugars from dates and honey deliver fast, clean energy in minutes — no waiting, no compromise.</div>
+    </div>
+    <div class="benefit-card reveal reveal-delay-1">
+      <div class="benefit-icon">🦠</div>
+      <div class="benefit-title">Gut Health Support</div>
+      <div class="benefit-desc">Natural fiber and whole ingredients promote better digestion and support a healthy gut — so you feel lighter and more balanced daily.</div>
+    </div>
+    <div class="benefit-card reveal reveal-delay-2">
+      <div class="benefit-icon">🌱</div>
+      <div class="benefit-title">Pure Ingredients</div>
+      <div class="benefit-desc">Every ingredient you can pronounce. Every item you can find in nature. Nothing hidden, ever.</div>
+    </div>
+    <div class="benefit-card reveal reveal-delay-3">
+      <div class="benefit-icon">💪</div>
+      <div class="benefit-title">Muscle Support</div>
+      <div class="benefit-desc">8–12g of plant protein per bar to fuel recovery, maintain muscle, and keep you performing your best.</div>
+    </div>
+    <div class="benefit-card reveal">
+      <div class="benefit-icon">🧠</div>
+      <div class="benefit-title">Mental Clarity</div>
+      <div class="benefit-desc">Omega-3s from flax seeds support brain function and focus so you can stay sharp through the longest days.</div>
+    </div>
+    <div class="benefit-card reveal reveal-delay-1">
+      <div class="benefit-icon">✈️</div>
+      <div class="benefit-title">Snack Anywhere</div>
+      <div class="benefit-desc">Perfectly portioned. No mess, no fridge needed. Your ideal companion for the gym, desk, or airport.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SENSORY SECTION -->
+<section class="sensory-section">
+  <div class="sensory-inner">
+    <div class="sensory-text">
+      <div class="section-label reveal">The Texture</div>
+      <h2 class="section-title reveal reveal-delay-1">You Can Almost<br>Taste It Already</h2>
+      <p class="section-sub reveal reveal-delay-2">
+        The sticky pull of dates. The satisfying crunch of a whole almond. The gentle pop of a pistachio. Every bite is a sensory event — dense, complex, unforgettable.
+      </p>
+      <div class="sensory-stats reveal reveal-delay-3">
+        <div class="stat-box">
+          <div class="stat-num">8g+</div>
+          <div class="stat-label">Protein Per Bar</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Cholesterol</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">200+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Real Ingredients</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sensory-image-grid reveal reveal-delay-2">
+      <!-- Main showcase (the uploaded image) -->
+      <!-- <div class="sensory-img-box">
+        <img src="/mnt/user-data/uploads/1773750781067_image.png" alt="Breaking Bar" style="width:100%;border-radius:20px;display:block;" />
+      </div> -->
+
+      <!-- Macro texture box -->
+      <div class="macro-box sensory-img-box">
+        <!-- <span class="macro-emoji">🌰</span> -->
+        <span class="macro-emoji">🥜</span>
+        <div class="macro-label">Loaded with<br>Whole Premium Nuts</div>
+      </div>
+
+      <!-- Dates texture box -->
+      <div class="macro-box sensory-img-box" style="background:linear-gradient(145deg,#6B3E26,#8B5A3C);">
+        <span class="macro-emoji">🫐</span>
+        <div class="macro-label" style="color:rgba(255,248,240,0.8)">Rich Medjool<br>Date Core</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="reviews">
+  <div class="section-label reveal">Real People, Real Results</div>
+  <h2 class="section-title reveal reveal-delay-1">They Tried It.<br>They're Obsessed.</h2>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">"I've tried every 'healthy' bar on the market. NaturBar is the first one that actually tastes like real food instead of cardboard. The Dates bar is pure magic — it satisfies my sweet tooth without any guilt."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">🏃</div>
+        <div>
+          <div class="testimonial-name">Priya Sharma</div>
+          <div class="testimonial-role">Marathon Runner, Mumbai</div>
+          <span class="testimonial-tag">Verified Buyer</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">"I keep the Dry Fruits bar in my laptop bag. When 3 PM hits and focus is gone, one bar brings me back completely. No jitters like coffee, no crash like energy drinks. Just pure, clean fuel."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#A3B18A,#7B9A68);">💼</div>
+        <div>
+          <div class="testimonial-name">Arjun Mehta</div>
+          <div class="testimonial-role">Product Manager, Bangalore</div>
+          <span class="testimonial-tag">Verified Buyer</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="testimonial-stars">
+        <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      </div>
+      <p class="testimonial-text">"As a nutritionist, I'm extremely selective about what I recommend. NaturBar is the only packaged snack I genuinely give to clients. The ingredient list is exactly what I'd hand-make myself."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar" style="background:linear-gradient(135deg,#D4A373,#6B3E26);">🥗</div>
+        <div>
+          <div class="testimonial-name">Dr. Kavya Nair</div>
+          <div class="testimonial-role">Certified Nutritionist, Pune</div>
+          <span class="testimonial-tag">Expert Verified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="order">
+  <div class="final-cta-bg"></div>
+  <div class="final-cta-glow"></div>
+  <div class="section-label final-cta-label reveal">Ready to Make the Switch?</div>
+  <h2 class="final-cta-title reveal reveal-delay-1">
+    Real Energy.<br><em>Real Ingredients.</em><br>Real Taste.
+  </h2>
+  <p class="final-cta-sub reveal reveal-delay-2">
+    Your next breakthrough snack is one click away. Order today and taste the difference nature makes.
+  </p>
+  <div class="final-cta-buttons reveal reveal-delay-3">
+    <a href="https://garkhaswaad.store.shoopy.in" class="btn-primary" style="font-size:1.05rem;padding:18px 48px;">
+      Order Now — Shop All Bars
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+    
+  </div>
+  <div class="final-cta-guarantee reveal reveal-delay-4">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    100% Satisfaction Guarantee · Free Returns · Ships in 24h
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Natur<span>Bar</span></div>
+  <div class="footer-links">
+    <a href="#">About Us</a>
+    <a href="#">Our Ingredients</a>
+    <a href="#">Shop</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+    <a href="#">Instagram</a>
+  </div>
+  <div class="footer-copy">© 2025 NaturBar. Made with love & nuts.</div>
+</footer>
+
+<!-- STICKY ORDER BAR -->
+<div class="sticky-order-bar" id="stickyBar">
+  <div class="sticky-left">
+    <div class="sticky-product-dot"></div>
+    <div class="sticky-text"><strong>NaturBar</strong> — Limited Stock Available</div>
+  </div>
+  <div class="sticky-right">
+    <span class="sticky-price">From ₹120 / bar</span>
+    <button class="sticky-btn">Order Now →</button>
+  </div>
+</div>
+
+<script>
+// Particle system
+(function() {
+  const container = document.getElementById('particles');
+  const count = 20;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 5 + 2;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      background:${['#D4A373','#FF8C42','#EAD7C5','#A3B18A'][Math.floor(Math.random()*4)]};
+      animation-duration:${Math.random()*15+10}s;
+      animation-delay:${Math.random()*15}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+// Reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Sticky bar show/hide
+const stickyBar = document.getElementById('stickyBar');
+let heroBottom = 0;
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  if (!heroBottom) {
+    const hero = document.querySelector('.hero');
+    heroBottom = hero ? hero.offsetHeight * 0.7 : 600;
+  }
+  if (scrollY > heroBottom) {
+    stickyBar.classList.add('visible');
+  } else {
+    stickyBar.classList.remove('visible');
+  }
+});
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) {
+    nav.style.boxShadow = '0 4px 24px rgba(62,39,35,0.12)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+</script>
+</body>
+</html>
